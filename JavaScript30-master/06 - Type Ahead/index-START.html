@@ -21,24 +21,30 @@ const cities = [];
 
 const prom =fetch(endpoint)
 .then(blob => blob.json())
-.then(data => cities.push(...data)
+.then(data => cities.push(...data));
 
 function findMatches(wordToMatch, cities) {
   return cities.filter(place => {
 
 
   const regex = new RegExp(wordToMatch, 'gi');
-  return place.city.match(regx || place.state.match(regex))
+  return place.city.match(regex) || place.state.match(regex)
   });
 }
 
   function displayMatches() {
-    console.log(this.value)
+    const matchArray = findMatches(this.value, cities);
+
+    console.log(matchArray)
   }
 
   const searchInput = document.querySelector('.search');
-  const searchInput = document.querySelector('.suggestions');
+  const suggestionInput = document.querySelector('.suggestions');
 
+searchInput.addEventListener('change', displayMatches);
+searchInput.addEventListener('keyup', displayMatches);
+
+???????? NOT FINISHED CONTINUE FROM 12min Mark
 </script>
 </body>
 </html>
