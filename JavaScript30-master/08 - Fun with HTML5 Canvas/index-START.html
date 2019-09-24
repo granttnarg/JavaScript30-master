@@ -15,6 +15,7 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 ctx.strokeStyle = '#BADASS';
+let hue = 10;
 ctx.lineWidth = 1;
 ctx.lineJoin = '';
 ctx.lineCap = 'square';
@@ -23,16 +24,17 @@ ctx.lineCap = 'square';
 let isDrawing = false;
 let lastX = 0;
 let lastY = 0;
-let hue = 100;
-let light = -100;
+let direction = true;
+
+
 
 function draw(e) {
   if(!isDrawing) return; // stop the function from running when they are not moused down
   console.log(hue);
-  console.log(light);
+
   console.log('>>>>>>>>');
 
-  ctx.strokeStyle = `hsl(${hue}, ${light}% , 50%)`;
+  ctx.strokeStyle = `hsl(${hue}, 100% , 50%)`;
   ctx.beginPath();
   // start from
   ctx.moveTo(lastX, lastY);
@@ -43,12 +45,26 @@ function draw(e) {
   let amp = [3.6,4.4,200.54654].sample();
   console.log(samp);
 
-  [lastX, lastY] = [e.offsetX * samp * 0.2 % samp, e.offsetY * samp % amp * amp]
-  hue++;
+  [lastX, lastY] = [e.offsetX, e.offsetY]
+  hue ++;
+  if (hue > 360) {
+    hue = 0;
+  };
   console.log(hue);
-  console.log(light);
-  light++;
-}
+  console.log(ctx.lineWidth);
+  if (ctx.lineWidth >= 300 || ctx.linewidth <= 2){
+    direction = !direction
+  }
+
+  if(direction) {
+    ctx.lineWidth ++;
+  } else {
+    ctx.lineWidth --;
+  }
+
+};
+
+
 
 canvas.addEventListener('mousedown', (e) => {
   isDrawing = true;
