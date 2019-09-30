@@ -62,13 +62,19 @@
     const sliderImages = document.querySelectorAll('.slide-in');
 
     function checkSlide(e) {
-      sliderImages.forEach(slideImage => {
+      sliderImages.forEach(sliderImage => {
         // half way thru the image
-        const slideInAt = (window.scrollY + window.innerHeight - slideImage.height / 2);
-        console.log(slideInAt)
+        const slideInAt = (window.scrollY + window.innerHeight - sliderImage.height / 2);
         // bottom of the image
-        const imageBottom = sliderImage.offsetTop + slideImage.height
-      })
+        const imageBottom = sliderImage.offsetTop + sliderImage.height;
+        const isHalfShown = slideInAt > sliderImage.offsetTop;
+        const isNotScrolledPast = window.scrollY < imageBottom;
+        if (isHalfShown && isNotScrolledPast) {
+          sliderImage.classList.add('active');
+        } else {
+          sliderImage.classList.remove('active');
+        }
+      });
     }
 
     window.addEventListener('scroll', debounce(checkSlide));
@@ -122,11 +128,11 @@
     }
 
     .align-left.slide-in {
-      transform: translateX(-30%) scale(0.95);
+      transform: translateX(-10%) scale(0.5);
     }
 
     .align-right.slide-in {
-      transform: translateX(30%) scale(0.95);
+      transform: translateX(10%) scale(0.1);
     }
 
     .slide-in.active {
