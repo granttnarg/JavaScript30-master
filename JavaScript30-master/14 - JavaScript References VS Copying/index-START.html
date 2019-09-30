@@ -13,10 +13,45 @@
     const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
 
     // and we want to make a copy of it.
+    let tea = 1
+    let play = tea
+
+    console.log(tea, play)
+
+    tea = 2
+
+
+
+    console.log(tea, play);
+
+
+
+
+    let team = players;
+
+    console.log(players, team);
 
     // You might think we can just do something like this:
+    team[3] = "Lux";
+
+
+    console.log(players, team);
+
 
     // however what happens when we update that array?
+
+    let team2 = players.slice();
+
+    console.log(players);
+    console.log(team2);
+
+    team2[0] = "TESTING"
+
+    console.log(players);
+    console.log(team2);
+
+    console.log(team666 = [...players])
+    console.log(team666 = Array.from(players));
 
     // now here is the problem!
 
@@ -39,8 +74,22 @@
     // with Objects
     const person = {
       name: 'Wes Bos',
-      age: 80
+      age: 80,
+      social: {
+        twitter: "@TheCapitan"
+      }
     };
+
+    const captain = person
+
+    captain.number = 99;
+
+    console.log(person.number)
+
+    const cap2 = Object.assign({}, person, { number: 99, age: 12});
+    console.log(cap2);
+    console.log(captain);
+    console.log(person);
 
     // and think we make a copy:
 
@@ -48,7 +97,16 @@
 
     // We will hopefully soon see the object ...spread
 
+    cap3 = {...person};
+
     // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+
+    const dev2 = JSON.parse(JSON.stringify(person));
+
+    console.log(dev2)
+
+    person.social
+
 
   </script>
 
