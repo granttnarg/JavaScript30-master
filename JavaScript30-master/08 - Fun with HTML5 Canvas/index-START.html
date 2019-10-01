@@ -18,7 +18,7 @@ ctx.strokeStyle = '#BADASS';
 let hue = 10;
 ctx.lineWidth = 1;
 ctx.lineJoin = '';
-ctx.lineCap = 'square';
+ctx.lineCap = 'round';
 
 
 let isDrawing = false;
@@ -45,14 +45,14 @@ function draw(e) {
   let amp = [3.6,4.4,200.54654].sample();
   console.log(samp);
 
-  [lastX, lastY] = [e.offsetX, e.offsetY]
+  [lastX, lastY] = [e.offsetX * samp * amp, e.offsetY * amp * 2]
   hue ++;
   if (hue > 360) {
     hue = 0;
   };
   console.log(hue);
   console.log(ctx.lineWidth);
-  if (ctx.lineWidth >= 300 || ctx.linewidth <= 2){
+  if (ctx.lineWidth >= 100 || ctx.linewidth <= 2){
     direction = !direction
   }
 
