@@ -36,6 +36,7 @@
   const speakButton = document.querySelector('#speak');
   const stopButton = document.querySelector('#stop');
   msg.text = document.querySelector('[name="text"]').value;
+  console.log(msg.text);
 
   function populateVoices() {
     voices = this.getVoices();
